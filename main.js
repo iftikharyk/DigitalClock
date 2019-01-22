@@ -6,7 +6,7 @@ function digitalClock() {
 
     var minutes = date.getMinutes() + '';
 
-    var seconds = date.getMinutes() + '';
+    var seconds = date.getSeconds() + '';
 
     var day = date.getDay();
 
@@ -39,8 +39,11 @@ function digitalClock() {
 
     var timeOf;
 
-    if (hours.length < 2) {
-        hours = '0' + hours;
+    if (hours > 12) {
+        hours = hours - 12;
+        timeOf = "PM";
+    } else {
+        timeOf = "AM";
     }
 
     if (minutes.length < 2) {
@@ -51,16 +54,16 @@ function digitalClock() {
         seconds = '0' + seconds;
     }
 
-    if (hours > 12) {
-        timeFormat = hours - 12;
-        timeOf = "PM";
-    } else {
-        timeOf = "AM";
-    }
+    // if (newhours > 12) {
+    //     timeFormat = newhours - 12;
+    //     timeOf = "PM";
+    // } else {
+    //     timeOf = "AM";
+    // }
 
-    var clock = weekDays[day] + ' ' + timeFormat + ':' + minutes + ':' + seconds + ' ' + timeOf;
+    var clock = weekDays[day] + ' ' + hours + ':' + minutes + ':' + seconds + ' ' + timeOf;
 
-    var clock = weekDays[day] + ' ' + timeFormat + ':' + minutes + ' ' + timeOf;
+    // var clock = weekDays[day] + ' ' + timeFormat + ':' + minutes + ' ' + timeOf;
 
     document.getElementById('clock').innerHTML = clock;
 
@@ -76,4 +79,4 @@ function digitalClock() {
 
 digitalClock();
 
-setInterval(digitalClock, 100);
+setInterval(digitalClock, 1000);
